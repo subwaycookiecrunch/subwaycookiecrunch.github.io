@@ -97,6 +97,7 @@
 						<span class="entry__title">
 							<a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener">When Does Adaptive Spectral Normalization Define a Fixed Convex Geometry?</a>
 							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-abstract">abstract</button>
 								<button type="button" class="action-btn" data-panel="panel-muon">isometry lab</button>
 								<button type="button" class="action-btn" data-panel="panel-lean4">lean 4 proof</button>
 								<button type="button" class="action-btn" id="companionPaperBtn">companion [P]</button>
@@ -108,10 +109,45 @@
 						</span>
 						<span class="entry__meta">ICLR 2027 &middot; Under Review</span>
 					</div>
+					<div class="entry__tldr">
+						<strong>TL;DR:</strong> We classify when adaptive spectral normalization yields a fixed convex geometry and when positive scalar rescaling can recover a norm-derived direction.
+					</div>
 					<p class="entry__desc">
-						Solo Author. Proved when spectral optimizers (Muon, Newton&ndash;Schulz, Jordan polynomials) admit a fixed convex potential. Proved cubic Newton&ndash;Schulz is norm-derived, while repeated steps and Taylor-quintic compositions are not despite preserving order. Derived a sharp filter-preserving condition-number frontier; certified all critical points via exact FLINT/Arb rational certificates over &Qopf;. Registered abstract #8176 on <a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener">OpenReview</a>.
+						<span class="desc-summary">
+							Solo Author. Proved when spectral optimizers (Muon, Newton&ndash;Schulz, Jordan polynomials) admit a fixed convex potential. Proved cubic Newton&ndash;Schulz is norm-derived, while repeated steps and Taylor-quintic compositions are not despite preserving order. Derived a sharp filter-preserving condition-number frontier; certified all critical points via exact FLINT/Arb rational certificates over &Qopf;. Registered submission #8176 on <a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener">OpenReview</a>.
+						</span>
+						<span class="desc-abstract">
+							Finite spectral updates can approximate the polar direction without implementing one fixed convex geometry. We classify this distinction for <em>q<sub>i</sub>(s) = h(s<sub>i</sub> / &alpha;(s))</em>, where the scale depends on the spectrum. With one initial Frobenius normalization in dimension at least three, one cubic Newton&ndash;Schulz step admits a norm-derived direction, whereas repeated cubic steps and every positive-depth Taylor-quintic composition do not, even after positive scalar rescaling and despite preserving order. More generally, an odd real-analytic filter in dimension at least four, or an odd polynomial in dimension at least three, admits a positive <em>C</em><sup>1</sup> integrating factor exactly when <em>h(t) = at + ct</em><sup>2<em>k</em>+1</sup>. We also classify adaptive normalizers whose displayed response belongs to one fixed convex subdifferential. Under stated regularity, boundary, and critical-point assumptions in dimension at least two, the principal modular family is exhaustive and yields unitarily invariant norms. Exact incompatibility has an important limit: a classical perspective construction gives one norm per depth whose gradient approximates the Taylor fields uniformly as depth increases at fixed dimension, including near rank loss. Additional shape assumptions yield a sharp filter-preserving conditioning frontier. Exact Jordan certificates and dependent replay of 4,728 unique stored spectra characterize geometric separation, not a training-performance penalty.
+						</span>
 					</p>
-					<span class="entry__stack">Muon, Newton-Schulz, FLINT/Arb, SymPy, Convex Analysis</span>
+					<span class="entry__stack">spectral optimization, convex analysis, adaptive normalization, matrix functions, Newton-Schulz iteration, Muon</span>
+
+					<!-- Interactive OpenReview Submission & Abstract Panel -->
+					<div class="interactive-panel" id="panel-abstract">
+						<div class="panel-title">
+							<span>OpenReview Submission #8176 &middot; Abstract &amp; Metadata</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="abstract-meta-bar">
+							<span><strong>Status:</strong> Under Review (ICLR 2027)</span>
+							<span><strong>Track:</strong> Conference Submission</span>
+							<span><strong>Primary Area:</strong> optimization</span>
+							<span><strong>License:</strong> CC BY 4.0</span>
+							<a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener" class="abstract-openreview-link">OpenReview Forum &nearr;</a>
+						</div>
+						<div class="abstract-body">
+							<p>Finite spectral updates can approximate the polar direction without implementing one fixed convex geometry. We classify this distinction for <em>q<sub>i</sub>(s) = h(s<sub>i</sub> / &alpha;(s))</em>, where the scale depends on the spectrum. With one initial Frobenius normalization in dimension at least three, one cubic Newton&ndash;Schulz step admits a norm-derived direction, whereas repeated cubic steps and every positive-depth Taylor-quintic composition do not, even after positive scalar rescaling and despite preserving order. More generally, an odd real-analytic filter in dimension at least four, or an odd polynomial in dimension at least three, admits a positive <em>C</em><sup>1</sup> integrating factor exactly when <em>h(t) = at + ct</em><sup>2<em>k</em>+1</sup>. We also classify adaptive normalizers whose displayed response belongs to one fixed convex subdifferential. Under stated regularity, boundary, and critical-point assumptions in dimension at least two, the principal modular family is exhaustive and yields unitarily invariant norms. Exact incompatibility has an important limit: a classical perspective construction gives one norm per depth whose gradient approximates the Taylor fields uniformly as depth increases at fixed dimension, including near rank loss. Additional shape assumptions yield a sharp filter-preserving conditioning frontier. Exact Jordan certificates and dependent replay of 4,728 unique stored spectra characterize geometric separation, not a training-performance penalty.</p>
+						</div>
+						<div class="abstract-keywords">
+							<span class="kw-label">Keywords:</span>
+							<span class="kw-tag">spectral optimization</span>
+							<span class="kw-tag">convex analysis</span>
+							<span class="kw-tag">adaptive normalization</span>
+							<span class="kw-tag">matrix functions</span>
+							<span class="kw-tag">Newton-Schulz iteration</span>
+							<span class="kw-tag">Muon</span>
+						</div>
+					</div>
 
 					<!-- Interactive Dual-Canvas Isometry Lab Panel -->
 					<div class="interactive-panel" id="panel-muon">
@@ -715,6 +751,7 @@ Click "Execute Context Compression" to run local hybrid lexical BM25 + dense sql
 				<button type="button" class="companion-tab-btn" data-tab="pane-mlx">muon_mlx.py (Apple MLX)</button>
 				<button type="button" class="companion-tab-btn" data-tab="pane-scaling">Pretraining Scaling Curves</button>
 				<button type="button" class="companion-tab-btn" data-tab="pane-arb">Arb Certificate JSON</button>
+				<button type="button" class="companion-tab-btn" data-tab="pane-paper">OpenReview #8176</button>
 			</div>
 			<div class="companion-body">
 				<!-- Pane 1: PyTorch Drop-in -->
@@ -853,6 +890,52 @@ class MLXMuon(opt.Optimizer):
   "norm_derived_status": true,
   "flint_arb_version": "2.23.0"
 }</code></pre>
+				</div>
+
+				<!-- Pane 5: OpenReview Submission Spec Sheet -->
+				<div class="companion-pane" id="pane-paper">
+					<div class="pane-action-bar">
+						<span class="pane-meta">ICLR 2027 Conference Submission &middot; Official OpenReview Spec Sheet</span>
+						<a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener" class="action-btn">view on openreview &nearr;</a>
+					</div>
+					<div class="paper-spec-sheet">
+						<div class="spec-row">
+							<span class="spec-label">Title</span>
+							<span class="spec-val"><strong>When Does Adaptive Spectral Normalization Define a Fixed Convex Geometry?</strong></span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">Authors</span>
+							<span class="spec-val">Shri Raj Bisaria (Solo Author)</span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">Venue</span>
+							<span class="spec-val">ICLR 2027 Conference Submission &middot; Under Review</span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">Submission #</span>
+							<span class="spec-val">8176</span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">Primary Area</span>
+							<span class="spec-val">optimization</span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">License</span>
+							<span class="spec-val">CC BY 4.0</span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">Keywords</span>
+							<span class="spec-val">spectral optimization, convex analysis, adaptive normalization, matrix functions, Newton-Schulz iteration, Muon</span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">TL;DR</span>
+							<span class="spec-val">We classify when adaptive spectral normalization yields a fixed convex geometry and when positive scalar rescaling can recover a norm-derived direction.</span>
+						</div>
+						<div class="spec-row">
+							<span class="spec-label">Verbatim Abstract</span>
+							<span class="spec-val math-text">Finite spectral updates can approximate the polar direction without implementing one fixed convex geometry. We classify this distinction for <em>q<sub>i</sub>(s) = h(s<sub>i</sub> / &alpha;(s))</em>, where the scale depends on the spectrum. With one initial Frobenius normalization in dimension at least three, one cubic Newton&ndash;Schulz step admits a norm-derived direction, whereas repeated cubic steps and every positive-depth Taylor-quintic composition do not, even after positive scalar rescaling and despite preserving order. More generally, an odd real-analytic filter in dimension at least four, or an odd polynomial in dimension at least three, admits a positive <em>C</em><sup>1</sup> integrating factor exactly when <em>h(t) = at + ct</em><sup>2<em>k</em>+1</sup>. We also classify adaptive normalizers whose displayed response belongs to one fixed convex subdifferential. Under stated regularity, boundary, and critical-point assumptions in dimension at least two, the principal modular family is exhaustive and yields unitarily invariant norms. Exact incompatibility has an important limit: a classical perspective construction gives one norm per depth whose gradient approximates the Taylor fields uniformly as depth increases at fixed dimension, including near rank loss. Additional shape assumptions yield a sharp filter-preserving conditioning frontier. Exact Jordan certificates and dependent replay of 4,728 unique stored spectra characterize geometric separation, not a training-performance penalty.</span>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="companion-footer">

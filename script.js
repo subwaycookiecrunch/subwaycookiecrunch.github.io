@@ -2286,6 +2286,15 @@
 				case 'muon':
 					response = 'Muon & Newton–Schulz Spectral Geometry:\n  Equation: X_{k+1} = 0.5 * X_k (3I - X_k^T X_k)\n  Status: Solo ICLR 2027 paper (OpenReview #8176)\n  Proof: Cubic step is norm-derived; higher order Taylor-quintic is not.\n  Certificates: 4,728 spectra verified over ℚ with FLINT/Arb.';
 					break;
+				case 'paper':
+				case 'abstract':
+				case 'openreview':
+					document.querySelectorAll('.interactive-panel').forEach(p => p.classList.remove('open'));
+					const absP = document.getElementById('panel-abstract');
+					if (absP) absP.classList.add('open');
+					scrollToId('entry-iclr');
+					response = 'Opening OpenReview Submission #8176 Abstract & Metadata card...';
+					break;
 				case 'bench':
 				case 'benchmark':
 					runDeviceBenchmark();
@@ -2356,6 +2365,12 @@
 		{ name: 'Play SPECTRAL: Eigenvalue Collapse', meta: 'real-time SVD matrix puzzle', action: scrollToArcade },
 		{ name: 'Benchmark This Device (GEMM)', meta: 'test your browser GFLOPS', action: runDeviceBenchmark },
 		{ name: 'ICLR 2027 Research Paper', meta: 'Spectral Optimizer Geometry', action: () => scrollToId('entry-iclr') },
+		{ name: 'Read ICLR Abstract & OpenReview Submission', meta: 'Submission #8176 details', action: () => {
+			document.querySelectorAll('.interactive-panel').forEach(p => p.classList.remove('open'));
+			const ap = document.getElementById('panel-abstract');
+			if (ap) ap.classList.add('open');
+			scrollToId('entry-iclr');
+		}},
 		{ name: 'EdgeCI — Apple Silicon Regression Gate', meta: 'YC W27 Applicant', action: () => scrollToId('edgeci') },
 		{ name: 'Thinking Budget — Dynamic Reasoning', meta: 'Meta OpenEnv Global Finalist', action: () => scrollToId('entry-thinking') },
 		{ name: 'drift — Zero-Entitlement ANE Monitor', meta: 'Homebrew', action: () => scrollToId('entry-drift') },
