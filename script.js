@@ -2324,6 +2324,11 @@
 				case 'stack':
 					response = 'Core Stack:\n  Languages: C/C++, Rust, Go, Python, TypeScript\n  DL / Systems: PyTorch, MLX, FLINT/Arb, SymPy, Tree-sitter, Docker';
 					break;
+				case 'resume':
+				case 'cv':
+					window.open('resume.pdf', '_blank');
+					response = 'Opening 1-page PDF Resume in a new tab...';
+					break;
 				case 'clear':
 					terminalOutput.textContent = '';
 					return;
@@ -2385,6 +2390,7 @@
 		{ name: 'Toggle Dark / Light Theme', meta: 'Theme', action: () => themeToggle && themeToggle.click() },
 		{ name: 'Toggle Compact / Full View', meta: 'View Mode', action: () => viewToggle && viewToggle.click() },
 		{ name: 'Open Terminal CLI', meta: 'rootless drawer', action: () => toggleTerminal() },
+		{ name: 'Download 1-Page PDF Resume / CV', meta: 'Direct PDF with live website', action: () => window.open('resume.pdf', '_blank') },
 		{ name: 'Print CV / Resume', meta: '1-page export', action: () => window.print() }
 	];
 
