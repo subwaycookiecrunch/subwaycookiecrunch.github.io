@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2a2e" />
+      <stop offset="100%" stop-color="#141416" />
+    </linearGradient>
+  </defs>
+  <circle cx="24" cy="24" r="24" fill="url(#avatarGrad)" />
+  <circle cx="24" cy="24" r="23" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.12" />
+  <text x="24" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" fill="#f4f4f5" text-anchor="middle" letter-spacing="-0.5">SR</text>
+</svg>

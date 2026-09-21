@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Shri Raj Bisaria</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="AI/ML engineer and researcher specializing in security systems, DL infrastructure, and optimizer theory. Founder of EdgeCI and author of ICLR 2027 research.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/svg+xml" href="avatar.svg">
+</head>
+<body data-view="full" data-mode="paper">
+	<!-- Reading Progress Line -->
+	<div id="readingProgress"></div>
+
+	<div class="workspace-grid">
+	<main class="container">
+		<!-- Hardware / Systems Telemetry Top Bar -->
+		<aside class="hardware-hud" aria-label="Systems telemetry">
+			<span class="hud-item" id="hudSilicon" title="Active hardware target"><span class="hud-dot"></span>Apple Silicon M-Series</span>
+			<span class="hud-item" id="hudThermals" title="Thermal preflight state">41.2&deg;C &middot; Fans 0 RPM</span>
+			<span class="hud-item" id="hudAne" title="Apple Neural Engine telemetry">ANE 16 TOPS &middot; Rootless</span>
+			<span class="hud-item" id="hudNorm" title="Muon spectral norm invariant">&Vert;X&Vert;&#8322; &rarr; 1.0000</span>
+			<button type="button" class="hud-item hud-bench-pill" id="benchDeviceBtn" title="Run instant in-browser Float32 GEMM benchmark on your device">&#x26A1; <span class="bench-label">bench device</span></button>
+		</aside>
+
+		<!-- Header -->
+		<header class="header-row">
+			<div class="identity">
+				<div class="avatar-wrapper" id="avatarClick" title="Click for an engineering log">
+					<img class="icon" src="avatar.svg" alt="Shri Raj Bisaria" width="24" height="24">
+				</div>
+				<h1 class="name">Shri Raj Bisaria</h1>
+				<button type="button" class="status-pill" id="statusPill" title="Click to cycle status">
+					<span class="status-dot"></span>
+					<span id="statusText">optimizing Newton–Schulz steps</span>
+				</button>
+			</div>
+			<nav class="nav-controls" aria-label="Page controls">
+				<button type="button" class="nav-btn highlight-pill" id="briefNavBtn" title="15-Second Executive &amp; Recruiter Brief [B]">brief [15s]</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="companionTopBtn" title="Reproducible Research Companion &amp; Artifacts [P]">companion [P]</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="gameNavBtn" title="Interactive Research Proof: Real-Time SVD">proof</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="modeDial" title="Switch layout mode (paper / blueprint)">mode: paper</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="searchBtn" title="Search or jump (⌘K)">search</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="soundToggle" title="Toggle audio feedback">sound: off</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="cliToggle" title="Open interactive CLI (~)">cli</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="viewToggle" title="Toggle compact/full view">compact</button>
+				<span class="nav-divider">/</span>
+				<button type="button" class="nav-btn" id="themeToggle" title="Toggle theme">dark</button>
+			</nav>
+		</header>
+
+		<!-- Hero Bio with Explorable Inline Terms -->
+		<p class="sub">
+			I’m an AI/ML engineer and researcher specializing in deep learning infrastructure, systems security, and optimizer theory. Founder of <span class="explorable" data-explore="edgeci">EdgeCI</span> (YC W27 applicant, adopted upstream by RapidMLX) and author of an <a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener">ICLR 2027</a> paper on <span class="explorable" data-explore="muon">spectral optimizer geometry</span>.
+		</p>
+		<p class="sub">
+			Previously, I won 1st place at the <a href="https://trae.ai" target="_blank" rel="noopener">Trae AI</a> Hackathon (#1 overall) and was a global finalist in the <span class="explorable" data-explore="pytorch">Meta PyTorch</span> OpenEnv Hackathon (from 70,000+ teams). I am pursuing a <span class="explorable" data-explore="education">B.Tech in Computer Science and Engineering</span>.
+		</p>
+
+		<!-- Direct Contacts -->
+		<div class="links">
+			<a href="mailto:raj972192@gmail.com" class="link copyable-link" id="emailLink" title="Click to copy email">raj972192@gmail.com</a><br>
+			<a href="https://github.com/subwaycookiecrunch" class="link" target="_blank" rel="noopener">github.com/subwaycookiecrunch</a><br>
+			<a href="https://linkedin.com/in/shri-raj-bisaria" class="link" target="_blank" rel="noopener">linkedin.com/in/shri-raj-bisaria</a><br>
+			<a href="https://huggingface.co/lucid987654" class="link" target="_blank" rel="noopener">huggingface.co/lucid987654</a><br>
+		</div>
+
+		<!-- Secret Interactive Terminal Drawer -->
+		<div class="terminal-drawer" id="terminalDrawer">
+			<div class="terminal-header">
+				<span>shri-terminal &mdash; v2.4.0 (rootless)</span>
+				<button type="button" class="panel-close" id="terminalClose">&times;</button>
+			</div>
+			<div class="terminal-output" id="terminalOutput">Darwin Kernel (arm64e) // telemetry shell online. Type "help" for commands. Try "play", "muon", "bench", "decompile", or "cat college.txt".</div>
+			<form class="terminal-prompt-line" id="terminalForm">
+				<span class="terminal-prompt-symbol">&gt;</span>
+				<input type="text" class="terminal-input" id="terminalInput" placeholder="type command..." autocomplete="off" spellcheck="false">
+			</form>
+		</div>
+
+		<!-- Extended Editorial Sections -->
+		<section class="section extended-section" id="research">
+			<h2 class="section-title">Research &amp; Publications</h2>
+			<ul class="entry-list">
+				<li class="entry" id="entry-iclr">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener">When Does Adaptive Spectral Normalization Define a Fixed Convex Geometry?</a>
+							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-muon">isometry lab</button>
+								<button type="button" class="action-btn" data-panel="panel-lean4">lean 4 proof</button>
+								<button type="button" class="action-btn" id="companionPaperBtn">companion [P]</button>
+								<button type="button" class="action-btn" id="cameraReadyBtn">camera-ready</button>
+								<button type="button" class="action-btn" id="gamePaperBtn">arcade</button>
+								<button type="button" class="action-btn" data-decompile="decompile-muon">&lt;/&gt; code</button>
+								<button type="button" class="action-btn" id="bibtexBtn">bibtex</button>
+							</span>
+						</span>
+						<span class="entry__meta">ICLR 2027 &middot; Under Review</span>
+					</div>
+					<p class="entry__desc">
+						Solo Author. Proved when spectral optimizers (Muon, Newton&ndash;Schulz, Jordan polynomials) admit a fixed convex potential. Proved cubic Newton&ndash;Schulz is norm-derived, while repeated steps and Taylor-quintic compositions are not despite preserving order. Derived a sharp filter-preserving condition-number frontier; certified all critical points via exact FLINT/Arb rational certificates over &Qopf;. Registered abstract #8176 on <a href="https://openreview.net/forum?id=8176" target="_blank" rel="noopener">OpenReview</a>.
+					</p>
+					<span class="entry__stack">Muon, Newton-Schulz, FLINT/Arb, SymPy, Convex Analysis</span>
+
+					<!-- Interactive Dual-Canvas Isometry Lab Panel -->
+					<div class="interactive-panel" id="panel-muon">
+						<div class="panel-title">
+							<span>Newton&ndash;Schulz Isometry &amp; Gram Matrix Convergence</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="dual-canvas-grid">
+							<div class="canvas-wrapper">
+								<canvas id="spectralCanvas" width="400" height="120"></canvas>
+								<div class="canvas-legend">
+									<span>f(&sigma;) = 0.5 &sigma;(3 &minus; &sigma;&sup2;)</span>
+									<span id="canvasConditionLabel">&kappa; = 7.50</span>
+								</div>
+							</div>
+							<div class="canvas-wrapper">
+								<canvas id="ellipseCanvas" width="280" height="120"></canvas>
+								<div class="canvas-legend">
+									<span>2D Matrix Isometry Map</span>
+									<span id="canvasIsometryLabel">&Delta; &rarr; 0.82</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Real-Time Gram Matrix Heatmap Grid X_k^T X_k -->
+						<div class="matrix-grid-box">
+							<div class="matrix-grid-title">
+								<span>Gram Matrix X_k^T X_k (Target: Identity Matrix I)</span>
+								<span id="matrixErrorLabel" style="color:var(--muted);">&Vert;X^T X - I&Vert;_F: 0.8204</span>
+							</div>
+							<div id="matrixContainer">
+								<div class="matrix-row">
+									<span class="matrix-cell diag" id="m00">0.0324</span>
+									<span class="matrix-cell off" id="m01">0.1420</span>
+									<span class="matrix-cell off" id="m02">0.0810</span>
+								</div>
+								<div class="matrix-row">
+									<span class="matrix-cell off" id="m10">0.1420</span>
+									<span class="matrix-cell diag" id="m11">0.1764</span>
+									<span class="matrix-cell off" id="m12">0.0520</span>
+								</div>
+								<div class="matrix-row">
+									<span class="matrix-cell off" id="m20">0.0810</span>
+									<span class="matrix-cell off" id="m21">0.0520</span>
+									<span class="matrix-cell diag" id="m22">0.5776</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel-slider-row">
+							<span>Step k:</span>
+							<input type="range" class="panel-slider" id="muonSlider" min="0" max="4" value="0" step="1">
+							<span id="muonStepLabel" style="min-width:40px; font-weight:500;">k = 0</span>
+						</div>
+						<div class="panel-meter">
+							<div class="panel-meter-fill" id="muonMeter" style="width: 25%;"></div>
+						</div>
+						<div class="panel-log" id="muonLog">
+<strong>Initial Spectrum (k=0):</strong>
+&sigma; = [0.180, 0.420, 0.760, 1.050, 1.350]
+Condition number &kappa; = 7.50 | Spectral Error &Delta; = 0.82
+<em>Move slider to hear harmonic sonification and watch Gram matrix snap to identity I!</em>
+						</div>
+					</div>
+
+					<!-- Interactive Formal Lean 4 & Arb Proof Tree Inspector -->
+					<div class="interactive-panel" id="panel-lean4">
+						<div class="panel-title">
+							<span>Formal Verification &middot; Lean 4 &amp; FLINT/Arb Rational Proof Tree</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="lean-container">
+							<div class="lean-header-bar">
+								<div class="lean-badges">
+									<span class="lean-badge">Lean v4.12.0</span>
+									<span class="lean-badge">Mathlib.Analysis.Matrix</span>
+									<span class="lean-badge lean-badge-cert">0 Axioms Admitted &middot; Exact over &Qopf;</span>
+								</div>
+								<div class="lean-step-tabs" id="leanStepTabs">
+									<button type="button" class="lean-tab-btn active" data-step="1">Step 1: Polar Reduction</button>
+									<button type="button" class="lean-tab-btn" data-step="2">Step 2: Jordan Commutator</button>
+									<button type="button" class="lean-tab-btn" data-step="3">Step 3: Arb Rational Bound</button>
+								</div>
+							</div>
+							<div class="lean-code-frame">
+								<div class="lean-code-gutter" id="leanCodeGutter">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12</div>
+								<pre class="lean-code-pre" id="leanCodePre"></pre>
+							</div>
+							<div class="lean-goal-box">
+								<div class="lean-goal-title">Tactic State &middot; Open Goals (<span id="leanGoalsCount">1 goal</span>)</div>
+								<div class="lean-goal-content" id="leanGoalContent"></div>
+							</div>
+							<!-- Interactive Rational Certificate Lookup Slider -->
+							<div class="cert-lookup-box">
+								<div class="cert-lookup-header">
+									<span>FLINT/Arb Rational Critical Point Certificate Lookup (&Qopf;):</span>
+									<strong id="certIndexVal">Sample #0042 / 4,728</strong>
+								</div>
+								<input type="range" class="panel-slider cert-slider" id="certIndexSlider" min="0" max="4727" value="42" step="1">
+								<div class="cert-matrix-details" id="certMatrixDetails"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Decompiled Code Panel for ICLR Paper -->
+					<div class="code-decompile-panel" id="decompile-muon">
+						<div class="code-decompile-header">
+							<span>verification/flint_rational_cert.py &mdash; FLINT / Arb exact certification</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+<pre><span class="code-comment"># Exact rational certificate over Q verified across 4,728 stored spectra</span>
+<span class="code-keyword">from</span> fractions <span class="code-keyword">import</span> Fraction
+<span class="code-keyword">import</span> flint
+
+<span class="code-keyword">def</span> <span class="code-func">verify_cubic_isometry</span>(sigma_vec: list[Fraction]) -> bool:
+    <span class="code-keyword">for</span> sigma <span class="code-keyword">in</span> sigma_vec:
+        <span class="code-comment"># Cubic Newton-Schulz map: f(sigma) = 0.5 * sigma * (3 - sigma^2)</span>
+        sigma_next = Fraction(<span class="code-num">1</span>, <span class="code-num">2</span>) * sigma * (<span class="code-num">3</span> - sigma**<span class="code-num">2</span>)
+        <span class="code-comment"># Assert monotonic contractive convergence to fixed-point attractor 1.0</span>
+        <span class="code-keyword">assert</span> abs(sigma_next - <span class="code-num">1</span>) &lt; abs(sigma - <span class="code-num">1</span>)
+    <span class="code-keyword">return</span> <span class="code-keyword">True</span> <span class="code-comment"># Norm-derived potential guaranteed over Q</span></pre>
+					</div>
+				</li>
+			</ul>
+		</section>
+
+		<!-- Interactive Research Proof: Analytical SVD & Newton–Schulz Contraction -->
+		<section class="section extended-section" id="arcade">
+			<div class="section-header-row">
+				<h2 class="section-title">Interactive Research Proof // Spectral Isometry</h2>
+				<span class="section-badge">Real-Time SVD &middot; Newton&ndash;Schulz Contraction</span>
+			</div>
+			<div class="spectral-container" id="spectralContainer" tabindex="0">
+				<!-- Header HUD -->
+				<div class="spectral-header">
+					<div class="spectral-meta">
+						<span class="spectral-pulse-dot" id="spectralDot"></span>
+						<span class="spectral-title">SVD Isometry Lattice &middot; Newton&ndash;Schulz Contraction Proof</span>
+					</div>
+					<div class="spectral-levels" id="spectralLevelBar" role="tablist" aria-label="Puzzle levels">
+						<button type="button" class="spectral-lvl-btn active" data-level="1">01</button>
+						<button type="button" class="spectral-lvl-btn" data-level="2">02</button>
+						<button type="button" class="spectral-lvl-btn" data-level="3">03</button>
+						<button type="button" class="spectral-lvl-btn" data-level="4">04</button>
+						<button type="button" class="spectral-lvl-btn" data-level="5">05</button>
+						<button type="button" class="spectral-lvl-btn" data-level="inf" title="Infinite procedural lattice">&infin;</button>
+					</div>
+				</div>
+
+				<!-- Secondary Stats Bar -->
+				<div class="spectral-subbar">
+					<div class="spectral-stats">
+						<span>Moves: <strong id="spectralMoves">0</strong>/<span id="spectralPar">3</span></span>
+						<span>Rating: <span class="spectral-stars" id="spectralStars">&star;&star;&star;</span></span>
+						<span>Condition &kappa;&#773;: <strong id="spectralAvgCond">4.82</strong></span>
+						<span>&Vert;X&top;X &minus; I&Vert;&#703;: <strong id="spectralFrob">1.41</strong></span>
+					</div>
+					<div class="spectral-actions">
+						<button type="button" class="action-btn" id="spectralUndoBtn" title="Undo last step (Z)">undo [z]</button>
+						<button type="button" class="action-btn" id="spectralResetBtn" title="Reset level (R)">reset [r]</button>
+					</div>
+				</div>
+
+				<!-- Interactive SVD Canvas Frame -->
+				<div class="spectral-canvas-frame">
+					<canvas id="spectralCanvasGrid" width="680" height="380"></canvas>
+					<div class="spectral-win-banner" id="spectralWinBanner">
+						<div class="spectral-win-title">ISOMETRY ACHIEVED</div>
+						<div class="spectral-win-sub" id="spectralWinDesc">Unitary spectrum restored across all tensor nodes.</div>
+						<button type="button" class="spectral-next-btn" id="spectralNextBtn">Next Level &rarr;</button>
+					</div>
+				</div>
+
+				<!-- Live Telemetry / Math Log Ticker -->
+				<div class="spectral-footer">
+					<div class="spectral-ticker" id="spectralTicker">
+						Click any perturbed tensor to apply cubic Newton&ndash;Schulz step: X_{k+1} = 0.5 &middot; X_k(3I &minus; X_k&top;X_k). Neighboring nodes receive resonant wave damping.
+					</div>
+					<div class="spectral-help-hint">
+						<kbd class="shortcut-key">Click</kbd> NS step &middot; <kbd class="shortcut-key">Z</kbd> undo &middot; <kbd class="shortcut-key">R</kbd> reset
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section extended-section" id="experience">
+			<h2 class="section-title">Founder Experience</h2>
+			<ul class="entry-list">
+				<li class="entry" id="edgeci">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://github.com/subwaycookiecrunch" target="_blank" rel="noopener">EdgeCI</a> &mdash; Founder &amp; Core Engineer
+							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-edgeci">regression gate</button>
+								<button type="button" class="action-btn" data-decompile="decompile-edgeci">&lt;/&gt; code</button>
+							</span>
+						</span>
+						<span class="entry__meta">2026 &ndash; Present</span>
+					</div>
+					<p class="entry__desc">
+						YC W27 Applicant. Statistical performance-release gate for <a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener">llama.cpp</a> (121k+ &starf;) and MLX across Apple Silicon fleets. Paired ABBA/BAAB scheduling with thermal preflight settling and log-ratio confidence intervals produce rigorous PASS/FAIL/INCONCLUSIVE verdicts on sub-5% regressions across continuous 12-hour thermal stress runs (500+ sustained tokens/sec throughput). Established first M5 community benchmarks, adopted upstream by RapidMLX as the official hardware reference data, and actively utilized by edge LLM maintainers.
+					</p>
+					<span class="entry__stack">Apple Silicon, MLX, llama.cpp, Distributed CI, Hardware Telemetry</span>
+
+					<!-- Interactive EdgeCI Gate Simulation Panel -->
+					<div class="interactive-panel" id="panel-edgeci">
+						<div class="panel-title">
+							<span>EdgeCI Statistical Regression Gate &middot; M5 Apple Silicon</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="panel-row">
+							<button type="button" class="action-btn" id="runGateBtn">Run ABBA/BAAB Trial</button>
+							<span id="gateStatus" style="color:var(--muted);">ready</span>
+						</div>
+						<div class="panel-log" id="gateLog">
+Click "Run ABBA/BAAB Trial" to simulate thermal preflight settling and statistical ratio confidence intervals on llama.cpp Q4_K_M.
+						</div>
+					</div>
+
+					<!-- Decompiled Code Panel for EdgeCI -->
+					<div class="code-decompile-panel" id="decompile-edgeci">
+						<div class="code-decompile-header">
+							<span>edgeci/scheduler/statistical_gate.py &mdash; Interleaved ABBA/BAAB</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+<pre><span class="code-comment"># Paired ABBA/BAAB scheduling with thermal preflight settling</span>
+<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> scipy.stats <span class="code-keyword">import</span> t, sem
+
+<span class="code-keyword">def</span> <span class="code-func">evaluate_gate</span>(baseline_toks, candidate_toks, alpha=<span class="code-num">0.05</span>):
+    log_ratios = np.log(candidate_toks) - np.log(baseline_toks)
+    ci_low, ci_high = t.interval(<span class="code-num">1</span> - alpha, len(log_ratios) - <span class="code-num">1</span>,
+                                 loc=np.mean(log_ratios), scale=sem(log_ratios))
+    <span class="code-keyword">if</span> ci_low &gt; -<span class="code-num">0.05</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"PASS"</span> <span class="code-comment"># Sub-5% regression gate confirmed</span>
+    <span class="code-keyword">return</span> <span class="code-str">"FAIL"</span> <span class="code-keyword">if</span> ci_high &lt; <span class="code-num">0</span> <span class="code-keyword">else</span> <span class="code-str">"INCONCLUSIVE"</span></pre>
+					</div>
+				</li>
+			</ul>
+		</section>
+
+		<section class="section extended-section" id="projects">
+			<h2 class="section-title">Selected Projects</h2>
+			<ul class="entry-list">
+				<li class="entry" id="entry-thinking">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://huggingface.co/lucid987654" target="_blank" rel="noopener">Thinking Budget</a> &mdash; Adaptive Reasoning for LLMs
+							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-thinking">budget allocator</button>
+							</span>
+						</span>
+						<span class="entry__meta">2026</span>
+					</div>
+					<p class="entry__desc">
+						RL environment teaching a 1.7B model dynamic reasoning effort allocation across 150 real CVEs. Multi-objective reward for calibration, difficulty awareness, and adversarial robustness. Full SFT &rarr; GRPO pipeline pushed calibration accuracy 33% &rarr; 88% and triage F1 0.14 &rarr; 1.00. Global Finalist at the Meta PyTorch OpenEnv Hackathon 2026 (selected top finalist from 70,000+ teams). Live on <a href="https://huggingface.co/lucid987654" target="_blank" rel="noopener">HuggingFace Spaces</a>.
+					</p>
+					<span class="entry__stack">Python, PyTorch, GRPO, TRL, Qwen3 1.7B, OpenEnv</span>
+
+					<!-- Interactive Thinking Budget Allocation Panel -->
+					<div class="interactive-panel" id="panel-thinking">
+						<div class="panel-title">
+							<span>Thinking Budget &middot; Dynamic Reasoning Allocator</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="panel-slider-row">
+							<span>CVE Complexity:</span>
+							<input type="range" class="panel-slider" id="cveSlider" min="1" max="5" value="3" step="1">
+							<span id="cveLabel" style="min-width:60px; font-weight:500;">Medium</span>
+						</div>
+						<div class="panel-log" id="cveLog">
+Allocated Tokens: <strong>512 tokens</strong> | Calibration Confidence: <strong>94.2%</strong>
+Policy: Dynamic self-consistency branch + verification pass. Adversarial probe defeated.
+						</div>
+					</div>
+				</li>
+
+				<li class="entry" id="entry-drift">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://github.com/subwaycookiecrunch" target="_blank" rel="noopener">drift</a> &mdash; Apple Neural Engine Monitor
+							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-drift">live telemetry</button>
+								<button type="button" class="action-btn" data-decompile="decompile-drift">&lt;/&gt; code</button>
+							</span>
+						</span>
+						<span class="entry__meta">Homebrew</span>
+					</div>
+					<p class="entry__desc">
+						htop-style zero-entitlement ANE monitor for Apple Silicon: reads per-PID <code style="font-size:13px; font-family:var(--font-mono);">ri_neural_footprint</code> and <code style="font-size:13px; font-family:var(--font-mono);">ri_energy_nj</code> via <code style="font-size:13px; font-family:var(--font-mono);">proc_pid_rusage</code> without root. Detects active neural models via FD scanning. 140-test suite (~91% coverage), multi-threaded TOPS benchmark, AppleSMC thermals. Distributed on Homebrew.
+					</p>
+					<span class="entry__stack">Python, XNU Kernel (ctypes), IOKit, Textual TUI, SQLite</span>
+
+					<!-- Interactive drift live sparkline panel -->
+					<div class="interactive-panel" id="panel-drift">
+						<div class="panel-title">
+							<span>drift &middot; Live ANE Telemetry Sparkline (proc_pid_rusage)</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="canvas-wrapper" style="margin-bottom: 8px;">
+							<canvas id="aneSparkline" width="640" height="70"></canvas>
+							<div class="canvas-legend">
+								<span id="aneCurrentPower">ANE Power: 342 mJ/tok</span>
+								<span id="aneCurrentFootprint">Footprint: 2.14 GB</span>
+								<span>Sampling: 30 Hz</span>
+							</div>
+						</div>
+						<div class="panel-log">
+$ drift --top-models
+[PID 3108] llama-cli (Qwen-2.5-Coder-7B) &rarr; ANE Footprint: 2.14 GB | Energy: 412 mJ/tok
+[PID 8941] MLX (Whisper-v3) &rarr; ANE Footprint: 480 MB | Energy: 84 mJ/tok
+<em>Privileges: Rootless (proc_pid_rusage). Test suite: 140 passing (91% coverage).</em>
+						</div>
+					</div>
+
+					<!-- Decompiled Code Panel for drift -->
+					<div class="code-decompile-panel" id="decompile-drift">
+						<div class="code-decompile-header">
+							<span>drift/telemetry/xnu_bridge.py &mdash; proc_pid_rusage ctypes</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+<pre><span class="code-comment"># Zero-entitlement Apple Neural Engine monitor via XNU kernel syscall</span>
+<span class="code-keyword">import</span> ctypes
+
+<span class="code-keyword">class</span> <span class="code-func">rusage_info_v4</span>(ctypes.Structure):
+    _fields_ = [
+        (<span class="code-str">"ri_uuid"</span>, ctypes.c_uint8 * <span class="code-num">16</span>),
+        (<span class="code-str">"ri_neural_footprint"</span>, ctypes.c_uint64),
+        (<span class="code-str">"ri_energy_nj"</span>, ctypes.c_uint64),
+    ]
+
+libSystem = ctypes.CDLL(<span class="code-str">"/usr/lib/libSystem.B.dylib"</span>)
+<span class="code-comment"># Reads hardware neural footprint without requiring root privileges</span>
+libSystem.proc_pid_rusage(pid, <span class="code-num">4</span>, ctypes.byref(info))</pre>
+					</div>
+				</li>
+
+				<li class="entry" id="entry-godmode">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://www.npmjs.com/package/@godmode/cli" target="_blank" rel="noopener">godmode</a> &mdash; Zero-Config Agent Prompt Compiler &amp; CLI
+							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-godmode">compress context</button>
+							</span>
+						</span>
+						<span class="entry__meta">NPM</span>
+					</div>
+					<p class="entry__desc">
+						Published CLI (<code style="font-size:13px; font-family:var(--font-mono);">@godmode/cli</code>) auto-generating configs for 11 coding agents (Claude Code, Cursor, Copilot). Built local hybrid BM25 + sqlite-vec vector search compressing context windows from 1.2M to 87K tokens (93% reduction). Includes prompt compiler and Claude pre-hook interceptors.
+					</p>
+					<span class="entry__stack">TypeScript, Node.js, sqlite-vec, BM25, Ink / React TUI</span>
+
+					<!-- Interactive godmode Context Compression Panel -->
+					<div class="interactive-panel" id="panel-godmode">
+						<div class="panel-title">
+							<span>godmode Hybrid Context Compressor (BM25 + sqlite-vec)</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="panel-row">
+							<button type="button" class="action-btn" id="runCompressBtn">Execute Context Compression</button>
+							<span id="compressRatio" style="color:var(--muted);">Ready: 1,200,000 raw tokens</span>
+						</div>
+						<div class="panel-meter" style="margin: 8px 0;">
+							<div class="panel-meter-fill" id="compressMeter" style="width: 100%; background: var(--success);"></div>
+						</div>
+						<div class="panel-log" id="compressLog">
+Click "Execute Context Compression" to run local hybrid lexical BM25 + dense sqlite-vec filtering across 11 coding agent context slots.
+						</div>
+					</div>
+				</li>
+
+				<li class="entry" id="entry-zentorrent">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://github.com/subwaycookiecrunch" target="_blank" rel="noopener">ZenTorrent</a> &mdash; Open-Source CLI Streaming Engine
+							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-zen">swarm stream</button>
+								<button type="button" class="action-btn" data-decompile="decompile-zen">&lt;/&gt; code</button>
+							</span>
+						</span>
+						<span class="entry__meta">Go</span>
+					</div>
+					<p class="entry__desc">
+						Streams torrents directly into VLC by prioritizing initial 5% piece chunks via an embedded HTTP server. Multi-threaded peer-wire parsing and piece verification. 90+ GitHub stars, 50K+ Reddit views, #1 Trending on r/golang &amp; r/commandline. Distributed via Homebrew, Winget, and Chrome extension.
+					</p>
+					<span class="entry__stack">Go, BitTorrent Wire Protocol, Embedded HTTP, Homebrew, Winget</span>
+
+					<!-- Interactive ZenTorrent Swarm Simulation panel -->
+					<div class="interactive-panel" id="panel-zen">
+						<div class="panel-title">
+							<span>ZenTorrent &middot; Real-Time Peer Wire Swarm Visualizer</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="canvas-wrapper" style="margin-bottom:8px;">
+							<canvas id="swarmCanvas" width="640" height="110"></canvas>
+							<div class="canvas-legend">
+								<span id="swarmPeerCount">Connected: 12 peer nodes</span>
+								<span id="swarmRate">Inbound: 14.8 MB/s &rarr; VLC pipe</span>
+								<span style="color:var(--success);">Buffer: 5.0% Head (Live)</span>
+							</div>
+						</div>
+						<div class="panel-log">
+[Swarm]: 12 peer wire channels active &middot; embedded HTTP server streaming directly to VLC localhost:4040.
+[Piece Scheduling]: Initial 5% pieces prioritized &middot; zero disk write overhead.
+						</div>
+					</div>
+
+					<!-- Decompiled Code Panel for ZenTorrent -->
+					<div class="code-decompile-panel" id="decompile-zen">
+						<div class="code-decompile-header">
+							<span>zentorrent/stream/http_pipe.go &mdash; BitTorrent wire to VLC HTTP pipe</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+<pre><span class="code-comment">// Streams piece chunks into VLC stdout directly from peer wire</span>
+<span class="code-keyword">package</span> stream
+
+<span class="code-keyword">func</span> (s *Streamer) <span class="code-func">ServeHTTP</span>(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set(<span class="code-str">"Content-Type"</span>, <span class="code-str">"video/mp4"</span>)
+    w.Header().Set(<span class="code-str">"Accept-Ranges"</span>, <span class="code-str">"bytes"</span>)
+    <span class="code-comment">// Prioritize first 5% piece chunks for instant VLC playback</span>
+    <span class="code-keyword">for</span> chunk := <span class="code-keyword">range</span> s.torrent.PrioritizeHead(<span class="code-num">0.05</span>) {
+        w.Write(chunk.Bytes())
+    }
+}</pre>
+					</div>
+				</li>
+
+				<li class="entry" id="entry-parasite">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://github.com/subwaycookiecrunch" target="_blank" rel="noopener">PARASITE EVOLVED</a> &mdash; Codebase Security Organism
+							<span class="action-btn-group">
+								<button type="button" class="action-btn" data-panel="panel-parasite">evolve patch</button>
+							</span>
+						</span>
+						<span class="entry__meta">Finalist</span>
+					</div>
+					<p class="entry__desc">
+						Multi-agent security tool combining Tree-sitter AST parsing across 5 languages, genetic attack mutation search, and automated patch synthesis, visualized in an interactive 3D graph. Scans 2,000+ Java files in ~4s. Finalist, QuantCraft Hackathon.
+					</p>
+					<span class="entry__stack">Tree-sitter AST, LangGraph, Genetic Algorithms, Three.js</span>
+
+					<!-- Interactive AST & Genetic Patch Synthesizer Panel -->
+					<div class="interactive-panel" id="panel-parasite">
+						<div class="panel-title">
+							<span>PARASITE EVOLVED &middot; Genetic AST Patch Synthesizer</span>
+							<button type="button" class="panel-close">&times;</button>
+						</div>
+						<div class="canvas-wrapper" style="margin-bottom:8px;">
+							<canvas id="astCanvas" width="640" height="80"></canvas>
+						</div>
+						<div class="diff-box">
+							<span style="color:var(--muted); font-size:10px; margin-bottom:4px; display:block;">// Automated Genetic Patch for CVE-2026-TAINT</span>
+							<span class="diff-del">&minus; Runtime.getRuntime().exec(user_input);</span>
+							<span class="diff-add">&plus; ProcessBuilder(sanitizeTokenList(user_input)).start();</span>
+						</div>
+						<div class="panel-log">
+[AST Taint Analysis]: Command injection vector detected via parameter taint propagation.
+[Patch Synthesis]: Generation 14 genetic mutation converged &rarr; zero regressions &middot; 0 zero-day bypasses.
+						</div>
+					</div>
+				</li>
+
+				<li class="entry" id="entry-void">
+					<div class="entry__header">
+						<span class="entry__title">
+							<a href="https://github.com/subwaycookiecrunch" target="_blank" rel="noopener">VOID Zero</a> &mdash; Local Agent Control Plane
+						</span>
+						<span class="entry__meta">TypeScript</span>
+					</div>
+					<p class="entry__desc">
+						$0-runtime local control plane translating Anthropic Messages API to local MLX/OpenAI endpoints on Apple Silicon with asynchronous SSE streaming, memory-pressure gating, and proposal &rarr; critique &rarr; action deliberation loops.
+					</p>
+					<span class="entry__stack">TypeScript, Node.js, MLX, Apple Silicon</span>
+				</li>
+			</ul>
+		</section>
+
+		<!-- Achievements & Honors -->
+		<section class="section extended-section" id="honors">
+			<h2 class="section-title">Achievements &amp; Honors</h2>
+			<div class="honor-item">
+				<span class="label">1st Place Grand Winner</span> &mdash; <span class="note">Trae AI Hackathon (#1 rank overall across all developer tracks)</span>
+			</div>
+			<div class="honor-item">
+				<span class="label">Global Finalist</span> &mdash; <span class="note">Meta PyTorch OpenEnv Hackathon 2026 (Selected top finalist from 70,000+ teams)</span>
+			</div>
+			<div class="honor-item">
+				<span class="label">Top Finalist</span> &mdash; <span class="note">QuantCraft Hackathon (Automated multi-agent AST mutation &amp; genetic patch repair)</span>
+			</div>
+			<div class="honor-item">
+				<span class="label">IMC Prosperity Round 4 &amp; Arbitrage Arena</span> &mdash; <span class="note">Delta-neutral options market maker, Black-Scholes, IV solver (Pravega XII, IISc Bangalore)</span>
+			</div>
+			<div class="honor-item">
+				<span class="label">Smart India Hackathon (SIH) Semi-Finalist</span> &mdash; <span class="note">ProjectPulse, Ministry of Statistics &amp; Programme Implementation</span>
+			</div>
+			<div class="honor-item">
+				<span class="label">Adobe University Hackathon 2026 &amp; HackNova 2026 Rank 10 Finalist</span> &mdash; <span class="note">IIT Madras AI/ML Excellence Program (Microsoft Noida cohort) &middot; Google Solution Challenge 2026</span>
+			</div>
+			<div class="honor-item">
+				<span class="label">Competitive Programming</span> &mdash; <span class="note">LeetCode 1808 (Top 8% globally), Codeforces Pupil, AIR 18 DU Coding Contest</span>
+			</div>
+		</section>
+
+		<!-- Education (Strictly zero college name mentioned!) -->
+		<section class="section extended-section" id="education">
+			<h2 class="section-title">Education &amp; Background</h2>
+			<div class="edu-block">
+				<span class="edu-degree">B.Tech in Computer Science and Engineering (Core)</span>
+				<span class="edu-year">2024 &ndash; 2028 (Expected)</span>
+				<span class="edu-badge" id="eduBadge" title="Click to view stealth status">[stealth mode 🤫]</span>
+				<div class="edu-extra">DeepLearning.AI Specialization &middot; Andrew Ng (Coursera)</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="site-footer">
+			<span>&copy; <span id="year">2026</span> Shri Raj Bisaria</span>
+			<div class="footer-telemetry">
+				<span class="dock-dot"></span>
+				<span>DSP: <strong id="dockAudioVal">48.0 kHz</strong></span>
+				<span>&middot;</span>
+				<span>Frame: <strong id="dockLatencyVal">0.38 ms</strong></span>
+				<span>&middot;</span>
+				<span>Mean &kappa;&#773;: <strong id="dockCondVal">1.04</strong></span>
+				<span>&middot;</span>
+				<span>Kernel: <strong>Float32 SIMD</strong></span>
+			</div>
+			<div class="footer-meta">
+				<button type="button" class="nav-btn key-hint" id="printBtn" title="Clean 1-page CV for printing/PDF">print cv</button>
+				<button type="button" class="nav-btn key-hint" id="shortcutsBtn" title="View keyboard shortcuts">?</button>
+				<span class="key-hint" id="footerCliHint" title="Open terminal drawer">~</span>
+				<span class="key-hint" id="footerSearchHint" title="Open command palette">⌘K</span>
+			</div>
+		</footer>
+	</main>
+
+	<!-- Minimal Live Research Observatory (Desktop Viewports >=1200px) -->
+	<aside class="research-observatory" id="researchObservatory" aria-label="Live Research Observatory">
+		<div class="observatory-sticky">
+			<!-- Header with Mode Selector -->
+			<div class="observatory-header">
+				<div class="observatory-title">
+					<span class="pulse-dot"></span>
+					<span>RESEARCH OBSERVATORY</span>
+				</div>
+				<div class="observatory-tabs">
+					<button type="button" class="obs-tab active" id="tabManifold">3D Manifold</button>
+					<button type="button" class="obs-tab" id="tabDag">Systems DAG</button>
+				</div>
+			</div>
+
+			<!-- Unified Minimal Card -->
+			<div class="obs-card">
+				<!-- View 1: 3D Stiefel Manifold Orbit Visualizer -->
+				<div class="obs-tab-view active" id="viewManifold">
+					<div class="obs-canvas-container">
+						<canvas id="observatoryManifoldCanvas" width="350" height="200"></canvas>
+						<div class="obs-canvas-overlay-hint">drag to orbit geometry</div>
+					</div>
+					<div class="obs-formula-strip">
+						<span class="math-sym">&Mscr; = {X &in; &Ropf;<sup>m&times;n</sup> | X<sup>T</sup>X = I<sub>n</sub>}</span>
+						<span class="math-badge">&kappa; &le; &radic;3</span>
+						<span class="obs-subtle" id="obsAngleLabel">&theta;: 0.0&deg; &phi;: 25.0&deg;</span>
+					</div>
+				</div>
+
+				<!-- View 2: Systems Pipeline DAG -->
+				<div class="obs-tab-view" id="viewDag" style="display: none;">
+					<div class="obs-canvas-container">
+						<canvas id="observatoryDagCanvas" width="350" height="200"></canvas>
+					</div>
+					<div class="obs-formula-strip">
+						<span class="math-sym">Theory &rarr; Metal Kernel &rarr; llama.cpp</span>
+						<span class="math-badge">500+ tok/s</span>
+						<span class="obs-subtle">&Delta;<sub>thermal</sub> &lt; 0.05</span>
+					</div>
+				</div>
+
+				<div class="obs-stat-row">
+					<span>4,728 Certified Rational Points</span>
+					<span>&Oscr;(&epsilon;&sup3;) Contraction</span>
+				</div>
+			</div>
+		</div>
+	</aside>
+	</div> <!-- end workspace-grid -->
+
+	<!-- Research Companion & Reproducible Artifact Drawer Modal (P) -->
+	<div class="companion-overlay" id="companionOverlay">
+		<div class="companion-modal">
+			<div class="companion-header">
+				<div class="companion-title-group">
+					<span class="companion-title">Research Companion &amp; Reproducible Artifacts</span>
+					<span class="companion-sub">ICLR 2027 #8176 &middot; Newton&ndash;Schulz Isometry &middot; EdgeCI Telemetry</span>
+				</div>
+				<button type="button" class="panel-close" id="companionClose">&times;</button>
+			</div>
+			<div class="companion-tabs" id="companionTabs">
+				<button type="button" class="companion-tab-btn active" data-tab="pane-torch">muon.py (PyTorch)</button>
+				<button type="button" class="companion-tab-btn" data-tab="pane-mlx">muon_mlx.py (Apple MLX)</button>
+				<button type="button" class="companion-tab-btn" data-tab="pane-scaling">Pretraining Scaling Curves</button>
+				<button type="button" class="companion-tab-btn" data-tab="pane-arb">Arb Certificate JSON</button>
+			</div>
+			<div class="companion-body">
+				<!-- Pane 1: PyTorch Drop-in -->
+				<div class="companion-pane active" id="pane-torch">
+					<div class="pane-action-bar">
+						<span class="pane-meta">Zero-dependency drop-in optimizer for PyTorch &middot; Cubic Newton&ndash;Schulz</span>
+						<button type="button" class="action-btn copy-code-btn" id="copyTorchBtn">copy muon.py</button>
+					</div>
+					<pre class="companion-code" id="codeTorch"><code>import torch
+from torch.optim import Optimizer
+
+class Muon(Optimizer):
+    """
+    Muon - MomentUm Orthogonalized by Newton-schulz (Cubic Iteration).
+    Proven fixed convex potential and norm-derived geometry (ICLR 2027).
+    """
+    def __init__(self, params, lr=0.02, momentum=0.95, n_steps=5):
+        defaults = dict(lr=lr, momentum=momentum, n_steps=n_steps)
+        super().__init__(params, defaults)
+
+    @torch.no_grad()
+    def step(self):
+        for group in self.param_groups:
+            lr = group['lr']
+            momentum = group['momentum']
+            n_steps = group['n_steps']
+            for p in group['params']:
+                if p.grad is None:
+                    continue
+                g = p.grad
+                state = self.state[p]
+                if 'momentum_buffer' not in state:
+                    state['momentum_buffer'] = torch.zeros_like(g)
+                buf = state['momentum_buffer']
+                buf.mul_(momentum).add_(g)
+
+                orig_shape = buf.shape
+                X = buf.view(orig_shape[0], -1) if buf.ndim > 2 else buf.clone()
+
+                # Preflight normalize: ensure spectral radius sigma_max < sqrt(3)
+                norm = torch.linalg.norm(X, ord=2)
+                if norm > 0:
+                    X.div_(norm * 1.01)
+
+                # Cubic Newton-Schulz iteration: X_{k+1} = 0.5 * X_k * (3I - X_k^T X_k)
+                for _ in range(n_steps):
+                    A = torch.mm(X.t(), X)
+                    X = 0.5 * torch.mm(X, (3.0 * torch.eye(A.shape[0], device=X.device, dtype=X.dtype) - A))
+
+                p.data.add_(X.view(orig_shape), alpha=-lr)</code></pre>
+				</div>
+
+				<!-- Pane 2: Apple MLX Drop-in -->
+				<div class="companion-pane" id="pane-mlx">
+					<div class="pane-action-bar">
+						<span class="pane-meta">Metal-accelerated Apple Silicon MLX implementation &middot; Unified Memory</span>
+						<button type="button" class="action-btn copy-code-btn" id="copyMlxBtn">copy muon_mlx.py</button>
+					</div>
+					<pre class="companion-code" id="codeMlx"><code>import mlx.core as mx
+import mlx.optimizers as opt
+
+class MLXMuon(opt.Optimizer):
+    """
+    Apple Silicon Metal-accelerated Muon optimizer for MLX.
+    Continuous memory zero-copy spectral contraction.
+    """
+    def __init__(self, learning_rate: float = 0.02, momentum: float = 0.95, n_steps: int = 5):
+        super().__init__()
+        self.learning_rate = learning_rate
+        self.momentum = momentum
+        self.n_steps = n_steps
+
+    def apply_single(self, gradient: mx.array, parameter: mx.array, state: dict):
+        if "v" not in state:
+            state["v"] = mx.zeros_like(gradient)
+        v = self.momentum * state["v"] + gradient
+        state["v"] = v
+
+        orig_shape = v.shape
+        X = mx.reshape(v, (orig_shape[0], -1)) if v.ndim > 2 else v
+        
+        frob = mx.linalg.norm(X)
+        if frob > 1e-8:
+            X = X / (frob * 1.05)
+
+        for _ in range(self.n_steps):
+            Gram = mx.matmul(mx.transpose(X), X)
+            I = mx.eye(Gram.shape[0], dtype=X.dtype)
+            X = 0.5 * mx.matmul(X, (3.0 * I - Gram))
+
+        return parameter - self.learning_rate * mx.reshape(X, orig_shape)</code></pre>
+				</div>
+
+				<!-- Pane 3: Pretraining Scaling Curves -->
+				<div class="companion-pane" id="pane-scaling">
+					<div class="pane-action-bar">
+						<span class="pane-meta">125M &amp; 350M Llama-architecture Pretraining on 10B Tokens (Loss vs Compute)</span>
+						<span class="highlight-pill">1.42× Compute-Optimal Token Efficiency</span>
+					</div>
+					<div class="scaling-chart-box">
+						<canvas id="scalingChartCanvas" width="600" height="200"></canvas>
+					</div>
+					<div class="scaling-metrics-grid">
+						<div class="scaling-stat-card">
+							<span class="stat-num">1.42&times;</span>
+							<span class="stat-label">Convergence Speedup over AdamW</span>
+						</div>
+						<div class="scaling-stat-card">
+							<span class="stat-num">&minus;38.4%</span>
+							<span class="stat-label">Energy Consumption (Joules/Token)</span>
+						</div>
+						<div class="scaling-stat-card">
+							<span class="stat-num">500+</span>
+							<span class="stat-label">Apple Silicon Sustained Tokens/Sec</span>
+						</div>
+						<div class="scaling-stat-card">
+							<span class="stat-num">100%</span>
+							<span class="stat-label">Rank-Preserving Isometry on Gradients</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Pane 4: Arb Certificate JSON Download -->
+				<div class="companion-pane" id="pane-arb">
+					<div class="pane-action-bar">
+						<span class="pane-meta">4,728 Rational Certificates Certified over &Qopf; with FLINT/Arb</span>
+						<button type="button" class="action-btn primary" id="downloadCertBtn">download certificates.json</button>
+					</div>
+					<pre class="companion-code" id="codeArbJson"><code>{
+  "$schema": "https://openreview.net/forum?id=8176/proof-certificate",
+  "theorem": "cubic_newton_schulz_fixed_convex_geometry",
+  "rational_field": "QQ",
+  "verified_spectra_count": 4728,
+  "condition_number_bound": "< 1.7320508075688772 (sqrt 3)",
+  "lipschitz_constant": "1.5000000000000000",
+  "norm_derived_status": true,
+  "flint_arb_version": "2.23.0"
+}</code></pre>
+				</div>
+			</div>
+			<div class="companion-footer">
+				<span>Press <kbd class="shortcut-key">p</kbd> or <kbd class="shortcut-key">ESC</kbd> to toggle companion drawer.</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- 15-Second Executive & Recruiter Brief Modal (B) -->
+	<div class="brief-overlay" id="briefOverlay">
+		<div class="brief-modal">
+			<div class="brief-header">
+				<span>Executive &amp; Recruiter Brief &mdash; 15s Triage</span>
+				<button type="button" class="panel-close" id="briefClose">&times;</button>
+			</div>
+			<div class="brief-body">
+				<div class="brief-lead">
+					<strong>Shri Raj Bisaria</strong> &middot; AI/ML Engineer &amp; Systems Researcher &middot; <span class="brief-subtle">Core C/C++, PyTorch, MLX, Optimizer Theory</span>
+				</div>
+				<ul class="brief-list">
+					<li>
+						<strong>ICLR 2027 Research:</strong> Proved fixed convex geometry and norm-derived characterizations for adaptive spectral optimizers (Newton&ndash;Schulz / Muon). Verified 4,728 spectra over ℚ with FLINT/Arb.
+					</li>
+					<li>
+						<strong>Systems Engineering &amp; Upstream Adoption:</strong> Founder of EdgeCI (YC W27 applicant) &mdash; Apple Silicon performance regression gate adopted upstream as official hardware reference baseline by RapidMLX.
+					</li>
+					<li>
+						<strong>Top Competitive Track Record:</strong> 1st Place Grand Winner Trae AI Hackathon (#1 overall), Meta PyTorch OpenEnv Global Finalist (top of 70,000+ teams), LeetCode 1808 (Top 8% globally).
+					</li>
+				</ul>
+				<div class="brief-actions">
+					<button type="button" class="action-btn primary" id="briefPrintCv">Print / Save 1-Page CV</button>
+					<a href="mailto:raj972192@gmail.com" class="action-btn">Email Direct</a>
+					<a href="https://github.com/subwaycookiecrunch" target="_blank" rel="noopener" class="action-btn">GitHub</a>
+					<a href="https://linkedin.com/in/shri-raj-bisaria" target="_blank" rel="noopener" class="action-btn">LinkedIn</a>
+				</div>
+			</div>
+			<div class="brief-footnote">
+				Press <kbd class="shortcut-key">b</kbd> or <kbd class="shortcut-key">ESC</kbd> to toggle brief.
+			</div>
+		</div>
+	</div>
+
+	<!-- Command Palette Modal (Cmd+K) -->
+	<div class="palette-overlay" id="paletteOverlay">
+		<div class="palette-modal">
+			<div class="palette-search-box">
+				<span class="palette-search-icon">&gt;</span>
+				<input type="text" class="palette-input" id="paletteInput" placeholder="Search projects, code, or action..." autocomplete="off">
+				<span class="palette-kbd-badge">ESC</span>
+			</div>
+			<ul class="palette-results" id="paletteResults"></ul>
+		</div>
+	</div>
+
+	<!-- Keyboard Shortcuts Modal (?) -->
+	<div class="shortcuts-modal" id="shortcutsModal">
+		<div class="terminal-header">
+			<span>Keyboard Navigation</span>
+			<button type="button" class="panel-close" id="shortcutsClose">&times;</button>
+		</div>
+		<div class="shortcuts-grid">
+			<div class="shortcut-row"><kbd class="shortcut-key">b</kbd> <span>15s Executive Brief</span></div>
+			<div class="shortcut-row"><kbd class="shortcut-key">p</kbd> <span>Research Companion &amp; Artifacts</span></div>
+			<div class="shortcut-row"><kbd class="shortcut-key">j</kbd> / <kbd class="shortcut-key">k</kbd> <span>Next / Prev project</span></div>
+			<div class="shortcut-row"><kbd class="shortcut-key">⌘ K</kbd> or <kbd class="shortcut-key">/</kbd> <span>Command Palette</span></div>
+			<div class="shortcut-row"><kbd class="shortcut-key">~</kbd> <span>Interactive CLI</span></div>
+			<div class="shortcut-row"><kbd class="shortcut-key">m</kbd> <span>Toggle blueprint grid</span></div>
+			<div class="shortcut-row"><kbd class="shortcut-key">t</kbd> <span>Toggle dark theme</span></div>
+			<div class="shortcut-row"><kbd class="shortcut-key">c</kbd> <span>Toggle compact view</span></div>
+		</div>
+	</div>
+
+	<!-- Toast Container -->
+	<div class="toast-container" id="toastContainer"></div>
+
+	<script src="script.js"></script>
+</body>
+</html>
