@@ -2326,8 +2326,8 @@
 					break;
 				case 'resume':
 				case 'cv':
-					window.open('resume.pdf', '_blank');
-					response = 'Opening 1-page PDF Resume in a new tab...';
+					window.print();
+					response = 'Triggering 1-page CV export print dialog...';
 					break;
 				case 'clear':
 					terminalOutput.textContent = '';
@@ -2390,7 +2390,6 @@
 		{ name: 'Toggle Dark / Light Theme', meta: 'Theme', action: () => themeToggle && themeToggle.click() },
 		{ name: 'Toggle Compact / Full View', meta: 'View Mode', action: () => viewToggle && viewToggle.click() },
 		{ name: 'Open Terminal CLI', meta: 'rootless drawer', action: () => toggleTerminal() },
-		{ name: 'Download 1-Page PDF Resume / CV', meta: 'Direct PDF with live website', action: () => window.open('resume.pdf', '_blank') },
 		{ name: 'Print CV / Resume', meta: '1-page export', action: () => window.print() }
 	];
 
