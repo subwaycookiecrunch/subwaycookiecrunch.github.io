@@ -2314,7 +2314,7 @@
 					response = 'Toggled systems code decompile panels across all projects.';
 					break;
 				case 'whoami':
-					response = 'Shri Raj Bisaria — AI/ML Engineer & Researcher.\nICLR 2027 author (Spectral Geometry), EdgeCI founder (YC W27 applicant),\nTrae AI 1st Place Grand Winner, Meta PyTorch OpenEnv Global Finalist.';
+					response = 'Shri Raj Bisaria — AI/ML Engineer & Researcher.\nICLR 2027 author (Spectral Geometry), EdgeCI founder (YC W27 applicant),\nTrae AI Hackathon Winner, Meta PyTorch OpenEnv Global Finalist.';
 					break;
 				case 'cat college.txt':
 				case 'college':
