@@ -1667,9 +1667,9 @@
 		const dpr = window.devicePixelRatio || 1;
 
 		// Dynamic Retina resize
-		const rect = spectralGridCanvas.parentElement.getBoundingClientRect();
-		const displayW = Math.floor(rect.width);
-		const displayH = 380;
+		const rect = spectralGridCanvas.parentElement ? spectralGridCanvas.parentElement.getBoundingClientRect() : { width: 320 };
+		const displayW = Math.max(200, Math.floor(rect.width || 320));
+		const displayH = window.innerWidth <= 640 ? 280 : 380;
 
 		if (spectralGridCanvas.width !== displayW * dpr || spectralGridCanvas.height !== displayH * dpr) {
 			spectralGridCanvas.width = displayW * dpr;
@@ -1815,25 +1815,37 @@
 		spectralState.animId = requestAnimationFrame(renderSpectralCanvas);
 	}
 
-	// Canvas mouse click handler
+	// Canvas mouse click & touch handler
 	if (spectralGridCanvas) {
-		spectralGridCanvas.addEventListener('click', (e) => {
+		const handleSpectralTap = (clientX, clientY) => {
 			const rect = spectralGridCanvas.getBoundingClientRect();
-			const clientX = e.clientX - rect.left;
-			const clientY = e.clientY - rect.top;
+			const relX = clientX - rect.left;
+			const relY = clientY - rect.top;
 
 			const cols = spectralState.cols;
 			const rows = spectralState.rows;
 			const cellW = rect.width / cols;
 			const cellH = rect.height / rows;
 
-			const c = Math.floor(clientX / cellW);
-			const r = Math.floor(clientY / cellH);
+			const c = Math.floor(relX / cellW);
+			const r = Math.floor(relY / cellH);
 
 			if (r >= 0 && r < rows && c >= 0 && c < cols) {
 				triggerSpectralCell(r, c);
 			}
+		};
+
+		spectralGridCanvas.addEventListener('click', (e) => {
+			handleSpectralTap(e.clientX, e.clientY);
 		});
+
+		spectralGridCanvas.addEventListener('touchstart', (e) => {
+			if (e.touches && e.touches.length === 1) {
+				const touch = e.touches[0];
+				handleSpectralTap(touch.clientX, touch.clientY);
+				e.preventDefault();
+			}
+		}, { passive: false });
 
 		spectralGridCanvas.addEventListener('mousemove', (e) => {
 			const rect = spectralGridCanvas.getBoundingClientRect();
